@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor By ID</title>
+    <!DOCTYPE html>
+<script src="/static/state.js"></script>
+
+<link href="/static/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/admin/main/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<center>
+<h4><b><i>Doctor Details[Update]</i></b></h4>
+
+<table cellspacing="10" cellpadding="10" class="table table-bordred" style="width:80%; font-size:12px;">
+<tr align="center">
+<td>
+    <form action="/editdoctor" method="get">
+<table  class="table table-bordred" style="width:80%; font-size:12px;">
+
+
+    <tr>
+          <td><b><i>Doctor ID:</i></b></td>
+          <td><input type="text" class="form-control" name="did" value="{{ row.0 }}"> </td>
+    </tr>
+    <tr>
+          <td><b><i>Doctor Name:</i></b></td>
+          <td><input type="text" class="form-control" name="dname" value="{{ row.1 }}"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Date of Birth:</i></b></td>
+          <td><input type="date" class="form-control" name="dob" value="{{ row.2 }}"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Gender:</i></b></td>
+         {% if row.3 == "Male" %}
+
+          <td><input type="radio" name="gen" value="Male" checked>Male
+          <input type="radio" name="gen" value="Female">Female</td>
+         {% else %}
+         <td><input type="radio" name="gen" value="Male">Male
+          <input type="radio" name="gen" value="Female" checked>Female</td>
+
+         {% endif %}
+    </tr>
+    <tr>
+          <td><b><i>Address:</i></b></td>
+          <td><input type="text" class="form-control" name="add" value="{{ row.4  }}"> </td>
+    </tr>
+    <tr>
+          <td><b><i>State:</i></b></td>
+          <td><Select name="state" class="form-control" id="state" onchange="fillCity()">
+          <option>{{ row.5 }}</option>
+          <option>Madhya Pradesh</option>
+          <option>Uttar Pradesh</option>
+          <option>Gujrat</option>
+          <option>Haryana</option>
+
+          </Select>
+          </td>
+    </tr>
+     <tr>
+          <td><b><i>City:</i></b></td>
+         <td><select name="city" class="form-control" id="city"><option>{{ row.6 }}</option></select> </td>
+    </tr>
+     <tr>
+          <td><b><i>Hospital City:</i></b></td>
+         <td><select name="hcity" class="form-control">
+         <option>{{ row.9 }}</option>
+         <option>AIIMS Ahemdabad</option>
+         <option>AIIMS New Delhi</option>
+         <option>AIIMS Bhopal</option>
+
+         </select></td>
+    </tr>
+     <tr>
+          <td><b><i>Email ID:</i></b></td>
+          <td><input type="email" class="form-control" name="email" value="{{ row.8 }}"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Mobile Office</i></b></td>
+          <td><input type="text" class="form-control" name="mob" value="{{ row.7 }}"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Specialization:</i></b></td>
+         <td><select name="special" class="form-control">
+         <option>{{ row.10 }}</option>
+         <option>Cardiology</option>
+         <option>Neurology</option>
+         <option>Orthopedic</option>
+         </select></td>
+    </tr>
+     <tr>
+          <td><b><i>Degree:</i></b></td>
+          <td><input type="text" class="form-control" name="degree" value="{{ row.11 }}"> </td>
+    </tr>
+
+     <tr>
+          <td><b><i>Password:</i></b></td>
+          <td><input type="password" class="form-control" name="pass" value="{{ row.13 }}"> </td>
+    </tr>
+</table>
+    <input type="submit" value="Edit" class="btn btn-success btn-xs" name="btn"> <input type="submit" class="btn btn-danger btn-xs" name="btn" value="Delete">
+        </form>
+</td>
+<td>
+    <form action="/editpicture" method="post" enctype="multipart/form-data" > {% csrf_token %}
+        <input type="hidden" value="{{ row.0 }}" name="did">
+        <img class="img-thumbnail" src="/static/{{ row.13 }}" width="250" height="250"><br>
+        <input type="file" class="form-control" name="img"><br><br>
+        <input type="submit" class="btn btn-info btn-xs" value="Edit Picture">
+
+    </form>
+</td>
+</tr>
+</table>
+
+</CENTER>
+
+</body>
+</html>
+</head>
+<body>
+
+</body>
+</html>

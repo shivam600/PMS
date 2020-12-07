@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<link href="/static/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/admin/main/css/style.css" rel="stylesheet">
+</head>
+<body>
+<center>
+<h4><b><i>Doctor's List</i></b></h4>
+<table class="table table-bordred" style="width:80%; font-size:12px;">
+
+        <tr>
+            <th>Doctor<br>Details</th>
+            <th>Birth<br>Date</th>
+            <th>Address</th>
+            <th>Contact<br>Details</th>
+            <th>Hospital<br>City</th>
+            <th>Specialization<br>Degree</th>
+            <th>Update</th>
+        </tr>
+
+           {% for row in rows %}
+
+               <tr><td align="center">{{row.0}}<br>{{ row.1 }}<br><img src='/static/{{row.13 }}' width='35' height='35'><br>{{ row.3 }}</td><td>{{ row.2 }}</td><td>{{row.4}}<br>{{row.5 }},{{ row.6  }}</td><td>{{ row.7 }}<br>{{ row.8 }}</td><td>{{row.9}}</td><td>{{ row.10 }}<br>{{ row.11 }}</td><td><a href="/doctordisplaybyid?id={{ row.0 }}">Edit/Delete</a></td></tr>
+            {% endfor %}
+
+
+
+
+
+    </table>
+
+</center>
+
+</body>
+</html>

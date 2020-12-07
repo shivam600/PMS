@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pateint By ID</title>
+
+<script src="/static/state.js"></script>
+<link href="/static/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/admin/main/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<center>
+<h4><b><i>Patient Details[Update]</i></b></h4>
+
+<table cellspacing="10" cellpadding="10" class="table table-bordred" style="width:80%; font-size:12px;">
+<tr align="center">
+<td>
+    <form action="/editpatient" method="get">
+<table  class="table table-bordred" style="width:80%; font-size:12px;">
+
+    <tr>
+          <td><b><i>Patient ID:</i></b></td>
+          <td><input type="text" class="form-control" name="did" value="{{ row.0 }}"> </td>
+    </tr>
+    <tr>
+          <td><b><i>Patient Name:</i></b></td>
+          <td><input type="text" class="form-control" name="pname" value="{{ row.1 }}"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Date of Birth:</i></b></td>
+          <td><input type="date" class="form-control" name="dob" value="{{ row.2 }}"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Gender:</i></b></td>
+         {% if row.3 == "Male" %}
+
+          <td><input type="radio" name="gen" value="Male" checked>Male
+          <input type="radio" name="gen" value="Female">Female</td>
+         {% else %}
+         <td><input type="radio" name="gen" value="Male">Male
+          <input type="radio" name="gen" value="Female" checked>Female</td>
+
+         {% endif %}
+    </tr>
+    <tr>
+          <td><b><i>Address:</i></b></td>
+          <td><input type="text" name="add" class="form-control" value="{{ row.4  }}"> </td>
+    </tr>
+    <tr>
+          <td><b><i>State:</i></b></td>
+          <td><Select name="state" class="form-control" id="state" onchange="fillCity()">
+             <option>-State-</option>
+            <option>Andra Pradesh</option>
+            <option>Arunachal Pradesh</option>
+            <option>Assam</option>
+            <option>Bihar</option>
+            <option>Chattisgarh</option>
+            <option>Goa</option>
+            <option>Gujarat</option>
+            <option>Haryana</option>
+            <option>Himachal Pradesh</option>
+            <option>Jammu Anad Kashimr</option>
+            <option>Jharkhand</option>
+            <option>Karnataka</option>
+            <option>kerala</option>
+            <option>Madhya Pradesh</option>
+            <option>Maharashtra</option>
+            <option>Manipur</option>
+            <option>Meghalaya</option>
+            <option>Mizoram</option>
+            <option>Nagaland</option>
+            <option>Orissa</option>
+            <option>Punjab</option>
+            <option>Rajasthan</option>
+            <option>Sikkim</option>
+            <option>Tamil Nadu</option>
+            <option>Telagana</option>
+            <option>Tripura</option>
+            <option>Uttaranchal</option>
+            <option>Uttar Pradesh</option>
+            <option>West Bengal</option>
+         </Select> </td>
+    </tr>
+     <tr>
+          <td><b><i>City:</i></b></td>
+         <td><select name="city" class="form-control" id="city"><option>{{ row.6 }}</option></select> </td>
+    </tr>
+     <tr>
+          <td><b><i>Hospital City:</i></b></td>
+         <td><select name="hcity" class="form-control">
+         <option>{{ row.9 }}</option>
+         <option>AIIMS Ahemdabad</option>
+         <option>AIIMS New Delhi</option>
+         <option>AIIMS Bhopal</option>
+
+         </select></td>
+    </tr>
+       <td><b><i>Email:</i></b></td>
+          <td><input type="email" class="form-control" name="email"> </td>
+    </tr><tr>
+          <td><b><i>Mobile Number:</i></b></td>
+          <td><input type="text" class="form-control" name="mno"> </td>
+    </tr><tr>
+          <td><b><i>Admit For:</i></b></td>
+          <td><input type="text" class="form-control" name="admit"> </td>
+    </tr><tr>
+          <td><b><i>Blood Group:</i></b></td>
+          <td><select name="sym" class="form-control">
+              <option>-Select-</option>
+              <option>A+</option>
+              <option>B+</option>
+              <option>O+</option>
+              <option>AB+</option>
+              <option>A-</option>
+              <option>B-</option>
+              <option>AB-</option>
+          </select> </td>
+    </tr><tr>
+          <td><b><i>Admit Time:</i></b></td>
+          <td><input type="time" class="form-control" name="time"> </td>
+    </tr><tr>
+          <td><b><i>Room Number:</i></b></td>
+          <td><select name="roomno" class="form-control">
+              <option>-Select-</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+          </select> </td>
+    </tr>
+    <tr>
+          <td><b><i>Bed Number:</i></b></td>
+          <td><select id="badno" class="form-control">
+              <option>-Select-</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+          </select> </td>
+    <tr>
+          <td><b><i>Status:</i></b></td>
+          <td><input type="checkbox" name="status" value="yes">Yes
+          <input type="checkbox" name="status" value="no">No</td>
+    </tr>
+    <tr>
+          <td><b><i>Image:</i></b></td>
+          <td><input type="file" class="form-control" name="image"> </td>
+    </tr>
+    <tr>
+          <td><b><i>Password:</i></b></td>
+          <td><input type="password" class="form-control" name="password"> </td>
+    </tr>
+</table>
+    <input type="submit" value="Edit" class="btn btn-info btn-xs" name="btn"> <input class="btn btn-danger btn-xs" type="submit" name="btn" value="Delete">
+        </form>
+</td>
+<td>
+    <form action="/editpicture" method="post" enctype="multipart/form-data" > {% csrf_token %}
+        <input type="hidden" value="{{ row.0 }}" name="did">
+        <img src="/static/{{ row.13 }}" width="250" class="img-thumbnail" height="250"><br>
+        <input type="file" name="img" class="form-control"><br><br>
+        <input type="submit" class="btn btn-success btn-xs" value="Edit Picture">
+
+    </form>
+</td>
+</tr>
+</table>
+
+</CENTER>
+
+</body>
+</html>
+</head>
+<body>
+
+</body>
+</html>
+</body>
+</html>

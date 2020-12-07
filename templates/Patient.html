@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Info_page</title>
+<link href="/static/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/admin/main/css/style.css" rel="stylesheet">
+</head>
+<body>
+<center>
+<h4><b><i>Patient Details</i></b></h4>
+    <form action="/patientsubmit" method="post" enctype="multipart/form-data" > {% csrf_token %}
+<table class="table table-bordred" style="width:80%; font-size:12px;">
+
+
+
+   {%  if not request.session.SES_DOCTOR %}
+   <tr>
+          <td><b><i>Doctor ID:</i></b></td>
+          <td><select name="did" class="form-control">
+              {% for row in rows %}
+               <option value="{{ row.0 }}">{{ row.1 }}</option>
+
+              {% endfor %}
+
+          </select>
+          </td>
+    </tr>
+    {% else %}
+
+    <tr>
+          <td><b><i>Doctor ID:</i></b></td>
+          <td><input type="text" class="form-control" name="did" value="{{ request.session.SES_DOCTOR.0  }}">
+
+
+
+          </td>
+    </tr>
+
+    {% endif %}
+<!--    <tr>-->
+<!--          <td><b><i>Patient ID:</i></b></td>-->
+<!--          <td><input type="text" name="pid"> </td>-->
+<!--    </tr>-->
+    <tr>
+          <td><b><B>Patient Name:</B></b></td>
+          <td> <input type="text" class="form-control" name="pname" placeholder="Name"> </td>
+
+    </tr>
+     <tr>
+          <td><b><i>Date of Birth</i></b></td>
+          <td><input type="date" class="form-control" name="dob"> </td>
+    </tr>
+     <tr>
+          <td><b><B>Gender:</B></b></td>
+          <td><input type="radio" name="gen" value="male">Male
+          <input type="radio" name="gen" value="female">Female</td>
+    </tr>
+    <tr>
+          <td><b><i>Address</i></b></td>
+          <td><input type="text" class="form-control" name="add"> </td>
+    </tr>
+    <tr>
+          <td><b><i>State</i></b></td>
+           <td><Select name="state" class="form-control" id="state" onchange="fillCity()">
+             <option>-State-</option>
+            <option>Andra Pradesh</option>
+            <option>Arunachal Pradesh</option>
+            <option>Assam</option>
+            <option>Bihar</option>
+            <option>Chattisgarh</option>
+            <option>Goa</option>
+            <option>Gujarat</option>
+            <option>Haryana</option>
+            <option>Himachal Pradesh</option>
+            <option>Jammu Anad Kashimr</option>
+            <option>Jharkhand</option>
+            <option>Karnataka</option>
+            <option>kerala</option>
+            <option>Madhya Pradesh</option>
+            <option>Maharashtra</option>
+            <option>Manipur</option>
+            <option>Meghalaya</option>
+            <option>Mizoram</option>
+            <option>Nagaland</option>
+            <option>Orissa</option>
+            <option>Punjab</option>
+            <option>Rajasthan</option>
+            <option>Sikkim</option>
+            <option>Tamil Nadu</option>
+            <option>Telagana</option>
+            <option>Tripura</option>
+            <option>Uttaranchal</option>
+            <option>Uttar Pradesh</option>
+            <option>West Bengal</option>
+         </Select> </td>
+    </tr>
+     <tr>
+          <td><b><i>City</i></b></td>
+          <td><input type="text" class="form-control" name="city"> </td>
+    </tr><tr>
+          <td><b><i>Email:</i></b></td>
+          <td><input type="email" class="form-control" name="email"> </td>
+    </tr><tr>
+          <td><b><i>Mobile Number:</i></b></td>
+          <td><input type="text" class="form-control" name="mob"> </td>
+    </tr><tr>
+          <td><b><i>Admit For:</i></b></td>
+          <td><input type="text" class="form-control" name="admitfor"> </td>
+    </tr><tr>
+          <td><b><i>Blood Group:</i></b></td>
+          <td><select name="sym" class="form-control">
+              <option>-Select-</option>
+              <option>A+</option>
+              <option>B+</option>
+              <option>O+</option>
+              <option>AB+</option>
+              <option>A-</option>
+              <option>B-</option>
+              <option>AB-</option>
+          </select> </td>
+    </tr><tr>
+          <td><b><i>Admit Time:</i></b></td>
+          <td><input type="time" class="form-control" name="time"> </td>
+    </tr><tr>
+          <td><b><i>Room Number:</i></b></td>
+          <td><select name="roomno" class="form-control">
+              <option>-Select-</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+          </select> </td>
+    </tr>
+    <tr>
+          <td><b><i>Bed Number:</i></b></td>
+          <td><select name="badno" class="form-control">
+              <option>-Select-</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+          </select> </td>
+    <tr>
+          <td><b><i>Status:</i></b></td>
+          <td><input type="checkbox" name="status" value="yes">Yes
+          <input type="radio" name="status" value="no">No</td>
+    </tr>
+    <tr>
+          <td><b><i>Image:</i></b></td>
+          <td><input type="file" name="image" class="form-control"> </td>
+    </tr>
+    <tr>
+          <td><b><i>Password:</i></b></td>
+          <td><input type="password" name="password" class="form-control"> </td>
+    </tr>
+</table><br>
+     <tr>
+     <input type="submit" class="btn btn-info btn-xs"> <input type="reset" class="btn btn-danger btn-xs">
+</tr>
+        </form>{{msg}}
+</center>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<script src="/static/state.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor</title>
+    <link href="/static/admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/admin/main/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<center>
+<h4><b><i>Doctor Details</i></b></h4>
+    <form action="/doctorsubmit" method="post" enctype="multipart/form-data" > {% csrf_token %}
+<table class="table table-bordred" style="width:80%; font-size:12px;">
+
+    <tr>
+          <td><b><i>Doctor Name:</i></b></td>
+          <td><input type="text" class="form-control" name="dname"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Date of Birth:</i></b></td>
+          <td><input type="date" class="form-control" name="dob"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Gender:</i></b></td>
+          <td><input type="radio" name="gen" value="Male">Male
+          <input type="radio" name="gen" value="Female">Female</td>
+    </tr>
+    <tr>
+          <td><b><i>Address:</i></b></td>
+          <td><input type="text" class="form-control" name="add" > </td>
+    </tr>
+    <tr>
+          <td><b><i>State:</i></b></td>
+          <td><Select name="state" class="form-control" id="state" onchange="fillCity()">
+          <option>-State-</option>
+          <option>Madhya Pradesh</option>
+          <option>Uttar Pradesh</option>
+          <option>Gujrat</option>
+          <option>Haryana</option>
+
+          </Select>
+          </td>
+    </tr>
+     <tr>
+          <td><b><i>City:</i></b></td>
+         <td><select name="city" class="form-control" id="city"><option>-City-</option></select> </td>
+    </tr>
+     <tr>
+          <td><b><i>Hospital City:</i></b></td>
+         <td><select name="hcity" class="form-control">
+         <option>AIIMS Ahemdabad</option>
+         <option>AIIMS New Delhi</option>
+         <option>AIIMS Bhopal</option>
+
+         </select></td>
+    </tr>
+     <tr>
+          <td><b><i>Email ID:</i></b></td>
+          <td><input type="email" class="form-control" name="email"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Mobile Office</i></b></td>
+          <td><input type="text" class="form-control" name="mob"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Specialization:</i></b></td>
+         <td><select name="special" class="form-control">
+         <option>Cardiology</option>
+         <option>Neurology</option>
+         <option>Orthopedic</option>
+         </select></td>
+    </tr>
+     <tr>
+          <td><b><i>Degree:</i></b></td>
+          <td><input type="text" class="form-control" name="degree"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Image:</i></b></td>
+          <td><input type="file" class="form-control" name="img" width="187"> </td>
+    </tr>
+     <tr>
+          <td><b><i>Password:</i></b></td>
+          <td><input type="password" class="form-control" name="pass"> </td>
+    </tr>
+</table>
+    <input type="submit" class="btn btn-success btn-xs"> <input type="reset" class="btn btn-danger btn-xs">
+        </form>
+
+    {{ msg }}
+</CENTER>
+
+</body>
+</html>
